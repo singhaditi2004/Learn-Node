@@ -11,6 +11,7 @@
   "author": "Aditi Singh Bais",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "node-learn": "file:"
   },
   "devDependencies": {
