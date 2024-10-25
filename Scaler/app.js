@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+app.use(express.json);
 const courses = [
   { id: 1, name: "JS" },
   { id: 2, name: "Java" },
@@ -20,6 +21,14 @@ app.get("/contact", (res, req) => {
   res.send("Contact page");
 });
 
+app.get("/courses", (req, res) => {
+  const course = {
+    id: courses.length + 1,
+    name: req.body.name,
+  };
+  courses.push(course);
+  res.send(courses);
+});
 app.get("/courses/:id", (req, res) => {
   let course = courses.find((cour) => cour.id === parseInt(req.params.id));
   if (!course) {
