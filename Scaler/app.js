@@ -37,14 +37,20 @@ app.get("/courses/:id", (req, res) => {
   res.send(course);
 });
 app.put("/courses/:name", (req, res) => {
-  let course = courses.find((cour) => cour.name === (req.params.name));
+  let course = courses.find((cour) => cour.name === req.params.name);
   if (!course) {
     res.status(404).send("Course Not found");
   }
   course.name = req.body.name;
   res.send(course);
 });
-
+app.delete("/courses/:coursename", (req, res) => {
+  let UpdatedCourses = courses.filter(
+    (course) => course.name !== req.params.coursename
+  );
+  courses = UpdatedCourses;
+  res.send(courses);
+});
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
