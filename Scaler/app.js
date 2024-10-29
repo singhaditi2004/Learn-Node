@@ -29,6 +29,10 @@ app.get("/courses", (req, res) => {
   courses.push(course);
   res.send(courses);
 });
+app.use(function (req, res, next) {
+  console.log("I am custom middleware");
+  next();
+});
 app.get("/courses/:id", (req, res) => {
   let course = courses.find((cour) => cour.id === parseInt(req.params.id));
   if (!course) {
